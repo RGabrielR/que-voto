@@ -162,7 +162,7 @@ const HomePage = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col  justify-center sm:flex-row sm:justify-around  mt-12">
+          <div className="flex flex-col  justify-center sm:flex-row sm:justify-around mt-6 sm:mt-12">
             <p
               onClick={() => checkResults(["AFIRMATIVO"])}
               className="bg-green-700 my-2 sm:my-0 rounded-2xl p-4 hover:bg-green-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"

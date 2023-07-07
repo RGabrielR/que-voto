@@ -102,17 +102,17 @@ const HomePage = () => {
           <div className="relative pt-7 ">
             <div className="translate-x-[3rem] -translate-y-4 lg:-translate-x-16 z-30">
               <Image
-                className="absolute -left-8 lg:left-[4%] top-2 lg:top-6 w-52 sm:w-96 "
+                className="absolute -left-16 lg:left-[4%] top-2 lg:top-6 w-52 sm:w-96 "
                 src={questionMark}
                 alt="signo de pregunta"
               />
               <Image
-                className="absolute -left-4 lg:left-[6%] top-2 lg:top-6 w-52 sm:w-96 opacity-[0.7] z-30"
+                className="absolute -left-12 lg:left-[6%] top-2 lg:top-6 w-52 sm:w-96 opacity-[0.7] z-30"
                 src={questionMark}
                 alt="signo de pregunta"
               />
               <Image
-                className="absolute  lg:left-[8%] top-2 lg:top-6 w-52 sm:w-96 opacity-[0.5] z-30"
+                className="absolute -left-8 lg:left-[8%] top-2 lg:top-6 w-52 sm:w-96 opacity-[0.5] z-30"
                 src={questionMark}
                 alt="signo de pregunta"
               />

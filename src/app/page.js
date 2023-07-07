@@ -118,7 +118,7 @@ const HomePage = () => {
               />
             </div>
             <p className="text-3xl lg:text-7xl text-blue-950 -pl-8 text-center font-extrabold ">
-              Cómo voto
+              Cómo votó
             </p>
           </div>
           <BlurImage

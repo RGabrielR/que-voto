@@ -125,7 +125,7 @@ const HomePage = () => {
             image={randomData.photoLink}
             classesToAdd="mx-auto mt-2 z-0 relative"
           />
-          <div className="absolute right-[0%] lg:right-[4%] top-[10%] lg:top-[20%] flex flex-col items-end lg:items-start">
+          <div className="absolute right-[2%] lg:right-[4%] top-[10%] lg:top-[20%] flex flex-col items-end lg:items-start">
             <p className="bg-blue-500 max-w-[80%] text-black cursor-default mb-12 lg:mb-4 text-sm lg:text-2xl p1-2 lg:p-4 rounded-lg border-4 border-blue-950">
               - {randomData.party}
             </p>

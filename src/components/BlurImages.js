@@ -6,7 +6,7 @@ export default function BlurImage({ image, classesToAdd }) {
   let imageSize = window.innerWidth > 768 ? 300 : 250;
 
   return (
-    <a href={image.href} className="group">
+    <a href={image?.href} className="group">
       <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg xl:aspect-w-7 xl:aspect-h-8">
         <Image
           alt=""

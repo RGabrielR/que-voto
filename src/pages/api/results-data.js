@@ -1,9 +1,12 @@
 const cheerio = require("cheerio");
-import { readFile } from "fs/promises";
 import lawProject from "../../data/lawProjects.json" assert { type: "json" };
+
 export default async function handler(req, res) {
+  // Generate a random index to select a random law project
   const lawProjectsRandomIndex = Math.floor(Math.random() * lawProject.length);
   const randomLawProject = lawProject[lawProjectsRandomIndex];
+
+  // Fetch the HTML content of the law project's link
   const fetchRes = await fetch(randomLawProject.link).then((data) =>
     data.text()
   );
@@ -31,6 +34,7 @@ export default async function handler(req, res) {
         vote,
         photoLink,
         project: randomLawProject.name,
+        moreInfo: randomLawProject.moreInfo,
       });
     }
   });
@@ -39,5 +43,6 @@ export default async function handler(req, res) {
   const randomIndex = Math.floor(Math.random() * results.length);
   const randomObject = results[randomIndex];
 
+  // Send the random object as the response
   res.status(200).json(randomObject);
 }

@@ -98,7 +98,7 @@ const HomePage = () => {
       setShowResultAnimation(false);
       // Fetch new data
       fetchData();
-    }, 1000);
+    }, 2000);
   };
   return (
     <div className="bg-slate-300 h-screen w-screen">

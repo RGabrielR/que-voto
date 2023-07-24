@@ -18,18 +18,16 @@ const HomePage = () => {
   console.log("result", randomData);
   const fetchData = () => {
     // Fetch random data from the API
-    setTimeout(() => {
-      fetch("/api/results-data")
-        .then((response) => response.json())
-        .then((data) => {
-          // Update the state with the fetched random data
-          setRandomData(data);
-        })
-        .catch((error) => {
-          // Handle any error that occurred during the API request
-          console.error("Error fetching random data:", error);
-        });
-    }, 1000);
+    fetch("/api/results-data")
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the state with the fetched random data
+        setRandomData(data);
+      })
+      .catch((error) => {
+        // Handle any error that occurred during the API request
+        console.error("Error fetching random data:", error);
+      });
   };
   useEffect(() => {
     fetchData();
@@ -100,7 +98,7 @@ const HomePage = () => {
       setShowResultAnimation(false);
       // Fetch new data
       fetchData();
-    }, 2000);
+    }, 1000);
   };
   return (
     <div className="bg-slate-300 h-screen w-screen">

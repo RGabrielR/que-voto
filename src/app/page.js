@@ -17,16 +17,18 @@ const HomePage = () => {
   const [showResultAnimation, setShowResultAnimation] = useState(false);
   const fetchData = () => {
     // Fetch random data from the API
-    fetch("/api/results-data")
-      .then((response) => response.json())
-      .then((data) => {
-        // Update the state with the fetched random data
-        setRandomData(data);
-      })
-      .catch((error) => {
-        // Handle any error that occurred during the API request
-        console.error("Error fetching random data:", error);
-      });
+    setTimeout(() => {
+      fetch("/api/results-data")
+        .then((response) => response.json())
+        .then((data) => {
+          // Update the state with the fetched random data
+          setRandomData(data);
+        })
+        .catch((error) => {
+          // Handle any error that occurred during the API request
+          console.error("Error fetching random data:", error);
+        });
+    }, 1000);
   };
   useEffect(() => {
     fetchData();

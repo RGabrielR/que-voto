@@ -36,7 +36,9 @@ const Loader = () => {
             </li>
           </ul>
         </div>
-        <span>Cargando...</span>
+        <span className="bg-slate-400 text-white border-b-2 border-t-2 border-slate-800 [text-shadow:_2px_2px_5px_rgb(0_0_0_/_1)]">
+          Cargando...
+        </span>
       </div>
     </>
   );

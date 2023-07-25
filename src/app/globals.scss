@@ -123,7 +123,7 @@ a {
   height: 140px;
   position: relative;
   margin: auto;
-  transform: translateY(11rem);
+  transform: translateY(15rem);
 
   // Pseudo-elements
   &:before,
@@ -233,7 +233,6 @@ a {
   top: 100%;
   margin-top: 20px;
   text-align: center;
-  color: var(--text);
 }
 
 .opacity-fade {
@@ -425,19 +424,19 @@ a {
 @keyframes slide-left {
   0% {
     opacity: 0;
-    transform: translate(10rem, 7rem);
+    transform: translate(15rem, 3rem);
   }
   25% {
     opacity: 1;
-    transform: translate(0rem, 7rem);
+    transform: translate(-39rem, 3rem);
   }
   75% {
     opacity: 1;
-    transform: translate(0rem, 7rem);
+    transform: translate(-39rem, 3rem);
   }
   100% {
     opacity: 0;
-    transform: translate(-50rem, 7rem);
+    transform: translate(-70rem, 3rem);
   }
 }
 
@@ -448,11 +447,11 @@ a {
   }
   25% {
     opacity: 1;
-    transform: translate(0rem, 3rem);
+    transform: translate(-11rem, 3rem);
   }
   75% {
     opacity: 1;
-    transform: translate(0rem, 3rem);
+    transform: translate(-11rem, 3rem);
   }
   100% {
     opacity: 0;

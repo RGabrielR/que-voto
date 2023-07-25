@@ -15,7 +15,6 @@ const HomePage = () => {
   const [score, setScore] = useState(0);
   const [newScore, setNewScore] = useState(null);
   const [showResultAnimation, setShowResultAnimation] = useState(false);
-  console.log("result", randomData);
   const fetchData = () => {
     // Fetch random data from the API
     fetch("/api/results-data")
@@ -101,7 +100,12 @@ const HomePage = () => {
     }, 2000);
   };
   return (
-    <div className="bg-slate-300 h-screen w-screen">
+    <div
+      className="bg-slate-300 h-screen w-screen"
+      style={{
+        backgroundImage: "url('/backgroundpattern.webp')",
+      }}
+    >
       <p
         style={{ color: textScore() }}
         className={`font-extrabold ${textScore()} text-red-600 absolute top-2 left-4 text-3xl`}
@@ -141,7 +145,7 @@ const HomePage = () => {
                 alt="signo de pregunta"
               />
             </div>
-            <p className="text-3xl lg:text-7xl text-blue-950 -pl-8 text-center font-extrabold ">
+            <p className="text-3xl lg:text-7xl text-blue-950 -pl-8 text-center font-extrabold [text-shadow:_5px_4px_0_rgb(0_0_0_/_40%)]">
               Cómo votó
             </p>
           </div>
@@ -189,19 +193,19 @@ const HomePage = () => {
           <div className="flex flex-col  justify-center sm:flex-row sm:justify-around absolute left-[10%] sm:left-[12%] bottom-12 sm:bottom-14 mx-auto w-[80%]">
             <p
               onClick={() => checkResults(["AFIRMATIVO"])}
-              className="bg-green-700 w-full sm:mx-24 my-2 sm:my-0 rounded-2xl p-4 hover:bg-green-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"
+              className="bg-green-700 w-full text-center sm:mx-24 my-2  sm:my-0 md:min-w-[25%] rounded-2xl p-4 hover:bg-green-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"
             >
               AFIRMATIVO
             </p>
             <p
               onClick={() => checkResults(["NEGATIVO"])}
-              className="bg-red-700 w-full sm:mx-24 my-2 sm:my-0 rounded-2xl p-4 hover:bg-red-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"
+              className="bg-red-700 w-full text-center sm:mx-24 my-2  sm:my-0 md:min-w-[25%] rounded-2xl p-4 hover:bg-red-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"
             >
               NEGATIVO
             </p>
             <p
               onClick={() => checkResults(["AUSENTE", "ABSTENCION"])}
-              className="bg-yellow-700 w-full sm:mx-24 my-2 sm:my-0 rounded-2xl p-4 hover:bg-yellow-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"
+              className="bg-yellow-700 w-full text-center sm:mx-24 my-2  sm:my-0 md:min-w-[25%] rounded-2xl p-4 hover:bg-yellow-800 cursor-pointer hover:underline hover:decoration-black shadow-lg shadow-black"
             >
               AUSENTE O ABSTENCION
             </p>
@@ -211,7 +215,7 @@ const HomePage = () => {
         <>
           <div>
             {oldResult && (
-              <div className="text-black cursor-default mx-auto text-xl sm:text-4xl px-12 translate-y-40 text-center enter-right-to-left">
+              <div className=" py-12 absolute bg-slate-200 text-black cursor-default left-1/2 translate-x-[-50%] w-[90%] mx-auto rounded-md text-xl sm:text-4xl px-12 translate-y-40 text-center [text-shadow:_2px_2px_5px_rgb(255_255_255_/_1)] enter-right-to-left">
                 {" "}
                 <span className="text-blue-800">
                   {" "}
@@ -240,7 +244,7 @@ const HomePage = () => {
             <Loader />
             {oldResult && (
               <a target="_blank" href={oldResult.moreInfo}>
-                <p className="cursor-pointer absolute bottom-16 w-full text-white bg-blue-800 py-3 text-4xl text-center hover:text-black opacity-fade">
+                <p className="cursor-pointer absolute bottom-16 w-full text-white bg-blue-800 py-3 text-4xl text-center hover:text-black [text-shadow:_5px_4px_0_rgb(0_0_0_/_40%)] opacity-fade">
                   mas información
                 </p>
               </a>

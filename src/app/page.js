@@ -28,7 +28,7 @@ const HomePage = () => {
           // Handle any error that occurred during the API request
           console.error("Error fetching random data:", error);
         });
-    }, 1000);
+    }, 500);
   };
   useEffect(() => {
     fetchData();

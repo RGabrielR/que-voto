@@ -1,7 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
+// Default theme
+@import "@splidejs/react-splide/css";
+
+// or other themes
+@import "@splidejs/react-splide/css/skyblue";
+@import "@splidejs/react-splide/css/sea-green";
+
+// or only core styles
+@import "@splidejs/react-splide/css/core";
 // FONT-FACE
 @font-face {
   font-family: fontForProject;
@@ -96,9 +105,42 @@ a {
   text-decoration: none;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"] {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+#hs-input-with-leading-and-trailing-icon {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+  appearance: none !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .result-animation {
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
   position: absolute;
   top: 10%;
   left: 50%;
@@ -298,6 +340,12 @@ a {
   .enter-right-to-left {
     animation: slide-left-small 2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   }
+  .splide {
+    max-height: 25rem;
+  }
+  .splide__arrow {
+    margin-top: -5rem;
+  }
 }
 
 // KEYFRAMES
@@ -321,7 +369,7 @@ a {
 
 @keyframes result-animation-small {
   0% {
-    transform: scale(1) translateX(75%);
+    transform: scale(1) translateX(45%);
   }
   25% {
     transform: scale(1) translateX(10.5%);
@@ -470,6 +518,54 @@ a {
     opacity: 1;
   }
   100% {
+    opacity: 0;
+  }
+}
+.splide {
+  padding-top: 0;
+  height: 63vh;
+}
+.splide__list {
+  transform: translateX(25%);
+}
+.splide__arrow svg {
+  fill: rgba(1, 65, 255, 0.4);
+}
+.splide__arrow:hover svg {
+  fill: rgba(1, 65, 255, 0.8);
+}
+.splide__arrow svg:hover {
+  fill: rgba(1, 65, 255, 0.8);
+}
+.splide__arrow--prev {
+  z-index: 50;
+}
+
+// Rental loading
+.pulsing-6 {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform: rotate(45deg);
+}
+.pulsing-6:before,
+.pulsing-6:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50% 50% 0 50%;
+  background: #514b82;
+  -webkit-mask: radial-gradient(circle 50px at 50% 50%, #0000 94%, #000);
+  mask: radial-gradient(circle 50px at 50% 50%, #0000 94%, #000);
+}
+.pulsing-6:after {
+  animation: pl6 1s infinite;
+  transform: perspective(750px) translateZ(0px); // Adjusted perspective here
+}
+
+@keyframes pl6 {
+  to {
+    transform: perspective(750px) translateZ(375px); // Adjusted perspective and translation here
     opacity: 0;
   }
 }

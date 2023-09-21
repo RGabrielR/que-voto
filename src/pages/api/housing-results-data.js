@@ -63,21 +63,12 @@ export default async function handler(req, res) {
     if (metersMatch) {
       apartmentData.meters = `${metersMatch[1].trim()} mts.`;
     }
-    console.log(
-      "arrayOfImages",
-      arrayOfImages,
-      "priceMatch",
-      priceMatch[1]?.trim(),
-      "metersMatch",
-      metersMatch[1]?.trim()
-    );
     retries++;
   } while (
     arrayOfImages.size < 3 ||
     priceMatch[1].trim().includes("Consultar") ||
     parseInt(metersMatch[1].trim()) < 15
   );
-  console.log("salio del do while");
   apartmentData.arrayOfImages = Array.from(arrayOfImages);
 
   if (priceMatch) {
@@ -109,6 +100,6 @@ export default async function handler(req, res) {
   if (descriptionMatch) {
     apartmentData.description = descriptionMatch[1].trim();
   }
-
+  console.log("apartmentData", apartmentData);
   res.status(200).json(apartmentData);
 }

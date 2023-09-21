@@ -15,6 +15,7 @@ import ModalGuess from "@/components/ModalGuess";
 import ModalResult from "@/components/ModalResult";
 import { splitInDots } from "@/utils/functions";
 import NavBurguer from "@/components/NavBurguer/NavBurguer";
+
 const RentGuessing = () => {
   const [pastData, setPastData] = useState(null);
   const [presentData, setPresentData] = useState(null);
@@ -154,7 +155,7 @@ const RentGuessing = () => {
   };
   return (
     <div
-      className="bg-slate-300 h-screen w-screen relative"
+      className="bg-slate-300 h-screen w-screen relative "
       style={{
         backgroundImage: "url('/rentalbackground.png')",
       }}
@@ -178,9 +179,9 @@ const RentGuessing = () => {
         />
       )}
       {presentData ? (
-        <>
-          <div className=" pt-7 ">
-            <div className="translate-x-[3rem] -translate-y-4 lg:-translate-x-16 z-30 relative">
+        <div className="flex flex-col justify-around h-[90%] xl:h-[85%] xl:pt-12">
+          <div className=" xl:pt-12 ">
+            <div className="translate-x-[1rem] -translate-y-4 lg:-translate-x-16 z-0 relative">
               <Image
                 className="absolute -left-16 lg:left-[4%] top-2 lg:top-6 w-52 sm:w-96 "
                 src={questionMark}
@@ -201,7 +202,7 @@ const RentGuessing = () => {
               Cuanto está
             </p>
           </div>
-          <div className="mt-28 md:mt-0">
+          <div className="mt-4 md:mt-0 z-40">
             <Splide
               aria-label="My Favorite Images"
               data-splide='{"type":"loop"}'
@@ -221,12 +222,13 @@ const RentGuessing = () => {
                 </SplideSlide>
               ))}
             </Splide>
-
-            <ImageDescription
-              data={[presentData.location, presentData.meters]}
-            />
+            <div className="top-4">
+              <ImageDescription
+                data={[presentData.location, presentData.meters]}
+              />
+            </div>
           </div>
-          <div className="flex  justify-center bg-slate-400  border-gray-500 border-y-8 py-1 -mt-2 absolute bottom-96 sm:bottom-40 md:bottom-52 w-screen z-10 shadow-2xl shadow-black ">
+          <div className="flex  justify-center bg-slate-400  border-gray-500 border-y-8 py-3 -mt-2 xl:-mt-6 xl:mb-6   bottom-64 sm:bottom-40 xl:bottom-52 w-screen z-10 shadow-2xl shadow-black ">
             <p className="cursor-default  text-black  text-center relative text-md lg:text-2xl ">
               este departamento
             </p>
@@ -248,9 +250,9 @@ const RentGuessing = () => {
               />
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center mt-20 md:mt-0">
+          <div className="flex flex-row justify-center items-center  md:mt-0">
             <div
-              className="w-[15%] sm:w-[8%] bg-green-500 mr-6 cursor-pointer hover:bg-green-600 rounded-md"
+              className="w-[15%] sm:w-[8%] bg-green-500 mr-2 md:mr-6 cursor-pointer hover:bg-green-600 rounded-md"
               data-modal-target="large-modal"
               data-modal-toggle="large-modal"
               onClick={() => setShowModalHint(true)}
@@ -258,7 +260,7 @@ const RentGuessing = () => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="p-4  h-14 md:h-20"
+                className=" p-2 md:p-4  h-12 md:h-20"
                 style={{ fill: "white", width: "100%" }}
               >
                 <path d="M385.1 419.1C349.7 447.2 304.8 464 256 464s-93.7-16.8-129.1-44.9l80.4-80.4c14.3 8.4 31 13.3 48.8 13.3s34.5-4.8 48.8-13.3l80.4 80.4zm68.1 .2C489.9 374.9 512 318.1 512 256s-22.1-118.9-58.8-163.3L465 81c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0L419.3 58.8C374.9 22.1 318.1 0 256 0S137.1 22.1 92.7 58.8L81 47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L58.8 92.7C22.1 137.1 0 193.9 0 256s22.1 118.9 58.8 163.3L47 431c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l11.8-11.8C137.1 489.9 193.9 512 256 512s118.9-22.1 163.3-58.8L431 465c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-11.8-11.8zm-34.1-34.1l-80.4-80.4c8.4-14.3 13.3-31 13.3-48.8s-4.8-34.5-13.3-48.8l80.4-80.4C447.2 162.3 464 207.2 464 256s-16.8 93.7-44.9 129.1zM385.1 92.9l-80.4 80.4c-14.3-8.4-31-13.3-48.8-13.3s-34.5 4.8-48.8 13.3L126.9 92.9C162.3 64.8 207.2 48 256 48s93.7 16.8 129.1 44.9zM173.3 304.8L92.9 385.1C64.8 349.7 48 304.8 48 256s16.8-93.7 44.9-129.1l80.4 80.4c-8.4 14.3-13.3 31-13.3 48.8s4.8 34.5 13.3 48.8zM208 256a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z" />
@@ -307,7 +309,7 @@ const RentGuessing = () => {
             showModalHint={showModalHint}
             setShowModalHint={setShowModalHint}
           />
-        </>
+        </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
           <div class="pulsing-6 md:-ml-12 -mt-32"></div>

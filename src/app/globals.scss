@@ -344,7 +344,7 @@ input[type="number"] {
     max-height: 25rem;
   }
   .splide__arrow {
-    margin-top: -5rem;
+    margin-top: 1rem;
   }
 }
 
@@ -523,10 +523,13 @@ input[type="number"] {
 }
 .splide {
   padding-top: 0;
-  height: 63vh;
+  height: 50%;
 }
 .splide__list {
   transform: translateX(25%);
+}
+.splide__pagination {
+  top: 180%;
 }
 .splide__arrow svg {
   fill: rgba(1, 65, 255, 0.4);
@@ -536,9 +539,6 @@ input[type="number"] {
 }
 .splide__arrow svg:hover {
   fill: rgba(1, 65, 255, 0.8);
-}
-.splide__arrow--prev {
-  z-index: 50;
 }
 
 // Rental loading

@@ -15,6 +15,7 @@ import ModalGuess from "@/components/ModalGuess";
 import ModalResult from "@/components/ModalResult";
 import { splitInDots } from "@/utils/functions";
 import NavBurguer from "@/components/NavBurguer/NavBurguer";
+import dataTest from "../data/dataTest.json";
 
 const RentGuessing = () => {
   const [pastData, setPastData] = useState(null);
@@ -58,6 +59,7 @@ const RentGuessing = () => {
   useEffect(() => {
     fetchData();
     fetchFutureData();
+    // setPresentData(dataTest);
   }, []);
 
   useEffect(() => {
@@ -202,7 +204,7 @@ const RentGuessing = () => {
               Cuanto está
             </p>
           </div>
-          <div className="mt-4 md:mt-0 z-40">
+          <div className="mt-4 md:mt-0 z-20">
             <Splide
               aria-label="My Favorite Images"
               data-splide='{"type":"loop"}'
@@ -217,7 +219,7 @@ const RentGuessing = () => {
                       marginRight: "auto",
                       boxShadow: "0px 0px 63px 57px rgba(0,0,0,0.58)",
                     }}
-                    className=" w-[120vw] md:w-[40%] "
+                    className=" w-[120vw] md:w-[40%] z-0"
                   />
                 </SplideSlide>
               ))}
@@ -312,7 +314,7 @@ const RentGuessing = () => {
         </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
-          <div class="pulsing-6 md:-ml-12 -mt-32"></div>
+          <div className="pulsing-6 md:-ml-12 -mt-32"></div>
         </div>
       )}
       <ModalResult

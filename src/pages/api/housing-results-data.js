@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 import locations from "../../data/locations.json";
-
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
 function chooseRandomElement(array) {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
@@ -10,8 +10,18 @@ async function chooseRandomUrlAndFetch() {
   const randomLocation =
     locations[Math.floor(Math.random() * locations.length) - 1];
   const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
-  const browser = await puppeteer.launch();
+  const getBrowser = () =>
+    IS_PRODUCTION
+      ? // Connect to browserless so we don't run Chrome on the same hardware in production
+        puppeteer.connect({
+          browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.API_TOKEN}`,
+        })
+      : // Run the browser locally while in development
+        puppeteer.launch();
+
+  const browser = await getBrowser();
   const page = await browser.newPage();
+
   const client = await page.target().createCDPSession();
   await client.send("Page.setDownloadBehavior", {
     behavior: "allow",
@@ -21,6 +31,7 @@ async function chooseRandomUrlAndFetch() {
   await page.setUserAgent(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
   );
+  console.log("llega aca???");
   await page.goto(urlToFetch);
   await page.waitForSelector(".postings-container");
   const elements = await page.$$eval(".postings-container > div", (divs) => {
@@ -31,6 +42,7 @@ async function chooseRandomUrlAndFetch() {
 }
 export default async function handler(req, res) {
   try {
+    console.log("antes de la function");
     let elements = await chooseRandomUrlAndFetch();
     const apartmentData = {};
     let element, matches, uniqueUrls, priceMatch, metersMatch;
@@ -108,6 +120,7 @@ export default async function handler(req, res) {
     if (descriptionMatch) {
       apartmentData.description = descriptionMatch[1].trim();
     }
+    console.log("apartmentData", apartmentData);
     res.status(200).json(apartmentData);
   } catch (error) {
     console.log("apartmentDataError", error);

@@ -6,44 +6,48 @@ function chooseRandomElement(array) {
   return array[randomIndex];
 }
 async function chooseRandomUrlAndFetch() {
-  const randomPage = Math.floor(Math.random() * 5) + 1;
-  const randomLocation =
-    locations[Math.floor(Math.random() * locations.length) - 1];
-  const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
-  console.log("isProduction", IS_PRODUCTION);
-  const getBrowser = () =>
-    IS_PRODUCTION
-      ? // Connect to browserless so we don't run Chrome on the same hardware in production
-        puppeteer.connect({
-          browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.API_TOKEN}`,
-        })
-      : // Run the browser locally while in development
-        puppeteer.launch();
+  try {
+    const randomPage = Math.floor(Math.random() * 5) + 1;
+    const randomLocation =
+      locations[Math.floor(Math.random() * locations.length) - 1];
+    const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
+    console.log("isProduction", IS_PRODUCTION);
+    const getBrowser = () =>
+      IS_PRODUCTION
+        ? // Connect to browserless so we don't run Chrome on the same hardware in production
+          puppeteer.connect({
+            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.API_TOKEN}`,
+          })
+        : // Run the browser locally while in development
+          puppeteer.launch();
 
-  const browser = await getBrowser();
-  const page = await browser.newPage();
+    const browser = await getBrowser();
+    const page = await browser.newPage();
 
-  const client = await page.target().createCDPSession();
-  await client.send("Page.setDownloadBehavior", {
-    behavior: "allow",
-    downloadPath: "./Downloads",
-  });
-  await page.setViewport({ width: 1920, height: 1080 });
-  await page.setUserAgent(
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-  );
-  console.log("llega aca???");
-  console.log("la url esta bien? (antes del goto)", urlToFetch);
-  await page.goto(urlToFetch);
-  console.log("esta en el goto?");
-  console.log("la url esta bien?", urlToFetch);
-  await page.waitForSelector(".postings-container");
-  console.log("postingContainer???");
-  const elements = await page.$$eval(".postings-container > div", (divs) => {
-    return divs.map((div) => div.innerHTML);
-  });
-  await browser.close();
-  return elements;
+    const client = await page.target().createCDPSession();
+    await client.send("Page.setDownloadBehavior", {
+      behavior: "allow",
+      downloadPath: "./Downloads",
+    });
+    await page.setViewport({ width: 1920, height: 1080 });
+    await page.setUserAgent(
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+    );
+    console.log("llega aca???");
+    console.log("la url esta bien? (antes del goto)", urlToFetch);
+    await page.goto(urlToFetch);
+    console.log("esta en el goto?");
+    console.log("la url esta bien?", urlToFetch);
+    await page.waitForSelector(".postings-container", { timeout: 60000 });
+    console.log("postingContainer???");
+    const elements = await page.$$eval(".postings-container > div", (divs) => {
+      return divs.map((div) => div.innerHTML);
+    });
+    await browser.close();
+    return elements;
+  } catch (error) {
+    console.log("error", error);
+  }
 }
 export default async function handler(req, res) {
   try {

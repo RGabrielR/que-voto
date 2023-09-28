@@ -10,6 +10,7 @@ async function chooseRandomUrlAndFetch() {
   const randomLocation =
     locations[Math.floor(Math.random() * locations.length) - 1];
   const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
+  console.log("isProduction", IS_PRODUCTION);
   const getBrowser = () =>
     IS_PRODUCTION
       ? // Connect to browserless so we don't run Chrome on the same hardware in production

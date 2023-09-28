@@ -34,7 +34,10 @@ async function chooseRandomUrlAndFetch() {
   );
   console.log("llega aca???");
   await page.goto(urlToFetch);
+  console.log("esta en el goto?");
+  console.log("la url esta bien?", urlToFetch);
   await page.waitForSelector(".postings-container");
+  console.log("postingContainer???");
   const elements = await page.$$eval(".postings-container > div", (divs) => {
     return divs.map((div) => div.innerHTML);
   });

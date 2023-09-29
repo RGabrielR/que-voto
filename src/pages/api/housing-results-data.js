@@ -1,6 +1,7 @@
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "chrome-aws-lambda";
 import locations from "../../data/locations.json";
-const IS_PRODUCTION = process.env.NODE_ENV === "production";
+// const IS_PRODUCTION = process.env.NODE_ENV === "production";
 function chooseRandomElement(array) {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
@@ -11,17 +12,21 @@ async function chooseRandomUrlAndFetch() {
     const randomLocation =
       locations[Math.floor(Math.random() * locations.length) - 1];
     const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
-    console.log("isProduction", IS_PRODUCTION);
-    const getBrowser = () =>
-      IS_PRODUCTION
-        ? // Connect to browserless so we don't run Chrome on the same hardware in production
-          puppeteer.connect({
-            browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.API_TOKEN}`,
-          })
-        : // Run the browser locally while in development
-          puppeteer.launch();
-
-    const browser = await getBrowser();
+    // const getBrowser = () =>
+    //   IS_PRODUCTION
+    //     ? // Connect to browserless so we don't run Chrome on the same hardware in production
+    //       puppeteer.connect({
+    //         browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.API_TOKEN}`,
+    //       })
+    //     : // Run the browser locally while in development
+    //       puppeteer.launch();
+    console.log("executable path", process.env.CHROME_EXECUTABLE_PATH);
+    const browser = await puppeteer.launch({
+      args: chromium.args,
+      executablePath:
+        process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+      headless: true,
+    });
     const page = await browser.newPage();
 
     const client = await page.target().createCDPSession();

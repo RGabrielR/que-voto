@@ -12,14 +12,6 @@ async function chooseRandomUrlAndFetch() {
     const randomLocation =
       locations[Math.floor(Math.random() * locations.length) - 1];
     const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
-    // const getBrowser = () =>
-    //   IS_PRODUCTION
-    //     ? // Connect to browserless so we don't run Chrome on the same hardware in production
-    //       puppeteer.connect({
-    //         browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.API_TOKEN}`,
-    //       })
-    //     : // Run the browser locally while in development
-    //       puppeteer.launch();
     console.log("executable path", process.env.CHROME_EXECUTABLE_PATH);
     const browser = await puppeteer.launch({
       args: chromium.args,

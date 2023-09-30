@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer-core";
 import locations from "../../data/locations.json";
-import edgeChromium from "chrome-aws-lambda";
+const chromium = require("@sparticuz/chromium");
 function chooseRandomElement(array) {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
@@ -12,12 +12,12 @@ async function chooseRandomUrlAndFetch() {
       locations[Math.floor(Math.random() * locations.length) - 1];
     const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
     console.log("executable path", process.env.CHROME_EXECUTABLE_PATH);
-    const executablePath =
-      (await edgeChromium.executablePath) || process.env.CHROME_EXECUTABLE_PATH;
     const browser = await puppeteer.launch({
-      executablePath,
-      args: edgeChromium.args,
-      headless: false,
+      args: chromium.args,
+      executablePath:
+        process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+      headless: true,
+      // ...more config options
     });
     const page = await browser.newPage();
 

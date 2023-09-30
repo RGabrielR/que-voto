@@ -11,14 +11,21 @@ async function chooseRandomUrlAndFetch() {
     const randomLocation =
       locations[Math.floor(Math.random() * locations.length) - 1];
     const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      executablePath:
-        process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
-      headless: true,
-      // ...more config options
-    });
-    const page = await browser.newPage();
+    let browser;
+    let page;
+
+    if (!browser) {
+      browser = await puppeteer.launch({
+        args: chromium.args,
+        executablePath:
+          process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+        headless: true,
+        // ...more config options
+      });
+    }
+    if (!page) {
+      page = await browser.newPage();
+    }
 
     const client = await page.target().createCDPSession();
     await client.send("Page.setDownloadBehavior", {
@@ -34,9 +41,7 @@ async function chooseRandomUrlAndFetch() {
     await page.goto(urlToFetch);
     console.log("esta en el goto?");
     console.log("la url esta bien?", urlToFetch);
-    const bodyHTML = await page.$eval("body", (body) => body.innerHTML);
-    console.log("page", bodyHTML);
-    await page.waitForSelector(".postings-container", { timeout: 300000 });
+    await page.waitForSelector(".postings-container", { timeout: 300000 }); // here
     console.log("postingContainer???");
     const elements = await page.$$eval(".postings-container > div", (divs) => {
       return divs.map((div) => div.innerHTML);

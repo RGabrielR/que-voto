@@ -1,6 +1,6 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import questionMark from "../../public/questionMark.svg";
 import questionMarkClosing from "../../public/questionMarkClosing.svg";
 import { textScore } from "@/utils/functions";

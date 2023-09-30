@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^2.0.2",
     "@next/font": "13.4.8",
     "@sparticuz/chromium": "^106.0.2",
     "@splidejs/react-splide": "^0.7.12",
@@ -21,8 +22,8 @@
     "next": "13.4.8",
     "puppeteer": "^21.1.1",
     "puppeteer-core": "^10.2.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.63.6"
   },
   "devDependencies": {
@@ -30,8 +31,5 @@
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2"
-  },
-  "engines": {
-    "node": "16.x"
   }
 }

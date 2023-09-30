@@ -11,7 +11,6 @@ async function chooseRandomUrlAndFetch() {
     const randomLocation =
       locations[Math.floor(Math.random() * locations.length) - 1];
     const urlToFetch = `https://www.zonaprop.com.ar/departamentos-alquiler-${randomLocation}-orden-publicado-descendente-pagina-${randomPage}.html`;
-    console.log("executable path", process.env.CHROME_EXECUTABLE_PATH);
     const browser = await puppeteer.launch({
       args: chromium.args,
       executablePath:
@@ -35,6 +34,7 @@ async function chooseRandomUrlAndFetch() {
     await page.goto(urlToFetch);
     console.log("esta en el goto?");
     console.log("la url esta bien?", urlToFetch);
+    console.log("page", await page.content());
     await page.waitForSelector(".postings-container", { timeout: 300000 });
     console.log("postingContainer???");
     const elements = await page.$$eval(".postings-container > div", (divs) => {

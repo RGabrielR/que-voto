@@ -34,7 +34,8 @@ async function chooseRandomUrlAndFetch() {
     await page.goto(urlToFetch);
     console.log("esta en el goto?");
     console.log("la url esta bien?", urlToFetch);
-    console.log("page", await page.content());
+    const bodyHTML = await page.$eval("body", (body) => body.innerHTML);
+    console.log("page", bodyHTML);
     await page.waitForSelector(".postings-container", { timeout: 300000 });
     console.log("postingContainer???");
     const elements = await page.$$eval(".postings-container > div", (divs) => {

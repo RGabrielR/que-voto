@@ -28,33 +28,42 @@ const RentGuessing = () => {
   const [guess, setGuess] = useState("");
   const [showModalHint, setShowModalHint] = useState(false);
   const [showModalResult, setShowModalResult] = useState(false);
+  const [loadingFutureFetch, setLoadingFutureFetch] = useState(false);
+  const [loadingPresentFetch, setLoadingPresentFetch] = useState(false);
   const fetchData = () => {
     // Fetch random data from the API
-
-    fetch("/api/housing-results-data")
-      .then((response) => response.json())
-      .then((data) => {
-        // Update the state with the fetched random data
-        setPresentData(data);
-      })
-      .catch((error) => {
-        // Handle any error that occurred during the API request
-        console.error("Error fetching random data:", error);
-      });
-  };
-  const fetchFutureData = () => {
-    setTimeout(() => {
-      fetch("/api/housing-results-data")
+    if (!loadingPresentFetch) {
+      setLoadingPresentFetch(true);
+      fetch("/api/random-guess")
         .then((response) => response.json())
         .then((data) => {
           // Update the state with the fetched random data
-          setFutureData(data);
+          setLoadingPresentFetch(false);
+          setPresentData(data);
         })
         .catch((error) => {
           // Handle any error that occurred during the API request
           console.error("Error fetching random data:", error);
         });
-    }, 500);
+    }
+  };
+  const fetchFutureData = () => {
+    if (!loadingFutureFetch) {
+      setLoadingFutureFetch(true);
+      setTimeout(() => {
+        fetch("/api/random-guess")
+          .then((response) => response.json())
+          .then((data) => {
+            // Update the state with the fetched random data
+            setFutureData(data);
+            setLoadingFutureFetch(false);
+          })
+          .catch((error) => {
+            // Handle any error that occurred during the API request
+            console.error("Error fetching random data:", error);
+          });
+      }, 500);
+    }
   };
   useEffect(() => {
     fetchData();
@@ -111,6 +120,12 @@ const RentGuessing = () => {
       fetchFutureData();
     }
   }, [futureData]);
+  useEffect(() => {
+    if (!futureData && !presentData) {
+      fetchFutureData();
+      fetchData();
+    }
+  }, [presentData, futureData]);
   const testResults = () => {
     // chequear resultados con el precio y sumar o restar puntos segun que cerca estuvo
     let Guess = parseFloat(guess.replaceAll(".", ""));
@@ -155,6 +170,14 @@ const RentGuessing = () => {
     setPastData({ ...presentData, differenceInPercentages, guess });
     setShowResultAnimation(true);
   };
+  console.log(
+    "pastData",
+    pastData,
+    "presentData",
+    presentData,
+    "futureData",
+    futureData
+  );
   return (
     <div
       className="bg-slate-300 h-screen w-screen relative "

@@ -170,14 +170,6 @@ const RentGuessing = () => {
     setPastData({ ...presentData, differenceInPercentages, guess });
     setShowResultAnimation(true);
   };
-  console.log(
-    "pastData",
-    pastData,
-    "presentData",
-    presentData,
-    "futureData",
-    futureData
-  );
   return (
     <div
       className="bg-slate-300 h-screen w-screen relative "
@@ -253,7 +245,7 @@ const RentGuessing = () => {
               />
             </div>
           </div>
-          <div className="flex  justify-center bg-slate-400  border-gray-500 border-y-8 py-3 -mt-2 xl:-mt-28 xl:mb-6   bottom-64 sm:bottom-40 xl:bottom-52 w-screen z-40 shadow-2xl shadow-black ">
+          <div className="flex  justify-center bg-slate-400  border-gray-500 border-y-8 py-3 -mt-2 xl:-mt-28 xl:mb-6   bottom-64 sm:bottom-40 xl:bottom-52 w-screen z-20 shadow-2xl shadow-black ">
             <p className="cursor-default  text-black  text-center relative text-md lg:text-2xl ">
               este departamento
             </p>

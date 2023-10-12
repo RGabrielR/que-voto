@@ -204,7 +204,7 @@ const RentGuessing = () => {
         />
       )}
       {presentData ? (
-        <div className="flex flex-col justify-around h-[90%] xl:h-[85%] xl:pt-12">
+        <div className="flex flex-col justify-around h-[90%] xl:h-[75%] xl:pt-36">
           <div className=" xl:pt-12 ">
             <div className="translate-x-[1rem] -translate-y-4 lg:-translate-x-16 z-0 relative">
               <Image
@@ -253,7 +253,7 @@ const RentGuessing = () => {
               />
             </div>
           </div>
-          <div className="flex  justify-center bg-slate-400  border-gray-500 border-y-8 py-3 -mt-2 xl:-mt-6 xl:mb-6   bottom-64 sm:bottom-40 xl:bottom-52 w-screen z-10 shadow-2xl shadow-black ">
+          <div className="flex  justify-center bg-slate-400  border-gray-500 border-y-8 py-3 -mt-2 xl:-mt-28 xl:mb-6   bottom-64 sm:bottom-40 xl:bottom-52 w-screen z-40 shadow-2xl shadow-black ">
             <p className="cursor-default  text-black  text-center relative text-md lg:text-2xl ">
               este departamento
             </p>

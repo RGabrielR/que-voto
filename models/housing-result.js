@@ -72,13 +72,12 @@ export const housingResults = {
       let startTime = Date.now();
 
       do {
-        // if (
-        //   retries >= maxRetries ||
-        //   Date.now() - startTime > maxTimeoutMillis
-        // ) {
-        //   elements = await this.chooseRandomUrlAndFetch();
-        //   retries = 0;
-        // }
+        if (
+          retries >= maxRetries ||
+          Date.now() - startTime > maxTimeoutMillis
+        ) {
+          throw new Error("Timeout exceeded");
+        }
         element = await this.chooseRandomElement(elements);
         matches = element.match(/src="([^"]+)"/g);
         priceMatch = element.match(
@@ -145,7 +144,10 @@ export const housingResults = {
       }
       console.log("llego????", apartmentData);
       return await prisma.guess_apartment.create({
-        data: apartmentData,
+        data: {
+          ...apartmentData,
+          description: Buffer.from(apartmentData.description, "utf8"),
+        },
       });
     } catch (error) {
       console.log("error", error);

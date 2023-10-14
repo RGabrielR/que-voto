@@ -3,7 +3,7 @@ import { housingResults } from "models/housing-result";
 // Function to populate the schema with a delay
 async function populateSchemaWithDelay() {
   try {
-    const maxExecutions = 60; // Number of times to execute
+    const maxExecutions = 5; // Number of times to execute
     const delayBetweenExecutions = 40000; // 40-second delay (adjust as needed)
 
     for (let i = 0; i < maxExecutions; i++) {

@@ -12,8 +12,6 @@ const ModalGuess = ({ showModalHint, setShowModalHint, presentData }) => {
         .replace(/[^0-9]/g, "")
         .replace(regex, "$1. ");
     }
-    console.log("formatedARSPrize", formatedARSPrize);
-    console.log("formatedUSDPrize", formatedUSDPrize);
   }
 
   return (
@@ -25,7 +23,7 @@ const ModalGuess = ({ showModalHint, setShowModalHint, presentData }) => {
       <Modal.Header className="pl-12">Pista</Modal.Header>
       <Modal.Body>
         <div className="space-y-6 p-6 ">
-          <p className=" leading-relaxed text-gray-500 dark:text-gray-400 text-2xl">
+          <p className=" leading-relaxed text-gray-500 dark:text-gray-400 text-lg xl:text-2xl">
             El precio esta en{" "}
             {presentData.prizeInUSD ? (
               <span className="text-bold text-green-600">Dólares</span>
@@ -34,8 +32,9 @@ const ModalGuess = ({ showModalHint, setShowModalHint, presentData }) => {
             )}
             .
           </p>
-          <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-            {presentData.description
+          <p className="text-xs xl:text-base leading-relaxed text-gray-500 dark:text-gray-400">
+            {Buffer.from(presentData.description?.data)
+              .toString("utf8")
               .replace(presentData.prizeInUSD, "XXXXXX")
               .replace(presentData.prizeInARS, "XXXXXX")
               .replace(formatedARSPrize, "XXXXXX")

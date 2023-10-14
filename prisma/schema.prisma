@@ -12,7 +12,7 @@ datasource db {
 
 model guess_apartment {
   id            Int     @id @default(autoincrement())
-  description   String
+  description   Bytes
   location      String
   prizeInARS    String
   prizeInUSD    String?

@@ -291,6 +291,7 @@ const RentGuessing = () => {
                 name="hs-input-with-leading-and-trailing-icon"
                 className="md:py-6 px-4 text-gray-500 pl-12  pr-16 block w-full border-2  border-gray-200 shadow-sm rounded-md text-lg md:text-3xl focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-white dark:border-gray-700 dark:text-gray-400"
                 placeholder="0.00"
+                autocomplete="off"
                 onChange={(e) =>
                   splitInDots({ input: e.target.value, setInput: setGuess })
                 }

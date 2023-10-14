@@ -5,12 +5,11 @@ import { useRouter } from "next/router";
 const NavBurguer = () => {
   const [burguerOpen, setBurguerOpen] = useState(false);
   const router = useRouter();
-  console.log("router", router.pathname);
   return (
     <>
       <div>
         <button
-          className={`absolute right-8 top-4 group z-20 ${
+          className={`absolute right-8 top-4 group z-50 ${
             burguerOpen
               ? "ring-0 group-focus:ring-4 ring-gray-300 ring-opacity-30 "
               : "ring-0 ring-opacity-30 "
@@ -23,9 +22,8 @@ const NavBurguer = () => {
             }`}
           >
             <div
-              className={`flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden ${
-                burguerOpen ? "translate-x-1.5" : ""
-              }`}
+              className={`flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden   
+              `}
             >
               <div
                 className={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left ${
@@ -46,7 +44,7 @@ const NavBurguer = () => {
           </div>
         </button>
         <div
-          className={`transform origin-right absolute overflow-hidden font-bold text-2xl z-10 ${
+          className={`transform origin-right absolute overflow-hidden font-bold text-2xl z-40 ${
             burguerOpen
               ? "max-w-[30rem] bg-blue-950 text-white right-0 w-72 transition-max-w duration-300 rounded-bl-3xl ease-in"
               : "max-w-0 bg-blue-950 text-white right-20 w-72 transition-max-w duration-300 ease-out"

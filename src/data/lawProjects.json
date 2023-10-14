@@ -15,7 +15,7 @@
     "moreInfo": "https://www.bbc.com/mundo/noticias-america-latina-55483258"
   },
   {
-    "name": "Ley de alquileres",
+    "name": "Ley de alquileres (2020, plazo 2 años aumentos anuales)",
     "link": "https://votaciones.hcdn.gob.ar/votacion/modificacion-depositos-garantia-locacion/3907",
     "moreInfo": "https://www.lavoz.com.ar/clasificados-inmuebles/a-tres-anos-de-la-ley-de-alquileres-los-balances-son-criticos/"
   },
@@ -38,5 +38,10 @@
     "name": "aporte solidario a las grandes fortunas",
     "link": "https://votaciones.hcdn.gob.ar/votacion/4046",
     "moreInfo": "https://www.pagina12.com.ar/339309-el-aporte-de-las-grandes-fortunas-sumo-223-000-millones"
+  },
+  {
+    "name": "ley de alquileres (2023, plazo 3 años aumentos 6 meses)",
+    "link": "https://votaciones.hcdn.gob.ar/votacion/4869",
+    "moreInfo": "https://www.clarin.com/economia/ley-alquileres-principales-puntos-reforma-pasa-contratos-firmados_0_RxD3uEzCh4.html"
   }
 ]

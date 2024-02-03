@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["votaciones.hcdn.gob.ar"],
+    domains: ["votaciones.hcdn.gob.ar", "img.freepik.com", "pixabay.com"],
   },
 };
 
